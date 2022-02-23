@@ -1,4 +1,6 @@
 use strum::IntoEnumIterator;
+use rand::seq::SliceRandom;
+use rand::thread_rng;
 
 use crate::card::{Card, Suit, Number};
 
@@ -16,6 +18,8 @@ impl Deck {
                 deck.cards.push(Card::new(suit.clone(), num.clone()));
             }
         }
+        let mut rng = thread_rng();
+        deck.cards.shuffle(&mut rng);
         deck
     }
 }
