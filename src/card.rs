@@ -1,9 +1,12 @@
+use strum_macros::EnumIter;
 
+#[derive(Debug)]
 pub struct Card {
     pub suit: Suit,
     pub number: Number,
 }
 
+#[derive(Debug, Clone, EnumIter)]
 pub enum Suit {
     Diamond,
     Heart,
@@ -11,6 +14,7 @@ pub enum Suit {
     Club,
 }
 
+#[derive(Debug, Clone, EnumIter)]
 pub enum Number {
     Ace,
     Two = 2,
