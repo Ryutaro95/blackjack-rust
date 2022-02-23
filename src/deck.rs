@@ -18,8 +18,11 @@ impl Deck {
                 deck.cards.push(Card::new(suit.clone(), num.clone()));
             }
         }
-        let mut rng = thread_rng();
-        deck.cards.shuffle(&mut rng);
+        deck.shuffle();
         deck
+    }
+
+    fn shuffle(&mut self) {
+        self.cards.shuffle(&mut thread_rng());
     }
 }
