@@ -1,8 +1,8 @@
-use strum::IntoEnumIterator;
 use rand::seq::SliceRandom;
 use rand::thread_rng;
+use strum::IntoEnumIterator;
 
-use crate::card::{Card, Suit, Number};
+use crate::card::{Card, Number, Suit};
 
 #[derive(Debug, Default)]
 pub struct Deck {
@@ -20,6 +20,10 @@ impl Deck {
         }
         deck.shuffle();
         deck
+    }
+
+    pub fn draw(&mut self) -> Option<Card> {
+        self.cards.pop()
     }
 
     fn shuffle(&mut self) {

@@ -1,6 +1,6 @@
 use strum_macros::EnumIter;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Card {
     pub suit: Suit,
     pub number: Number,
@@ -14,7 +14,7 @@ pub enum Suit {
     Club,
 }
 
-#[derive(Debug, Clone, EnumIter)]
+#[derive(Debug, Clone, EnumIter, Copy)]
 pub enum Number {
     Ace,
     Two = 2,
