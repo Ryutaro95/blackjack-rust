@@ -2,37 +2,28 @@ mod card;
 mod deck;
 mod player;
 mod score;
+mod dealer;
 
 use deck::Deck;
-use player::Player;
-use card::Number::*;
+use player::{Player, Person};
+use dealer::Dealer;
 
 
 fn main() {
+    let (mut player, mut dealer) = start();
+    println!("{:#?}", player);
+    println!("{:#?}", dealer);
+}
+
+fn start() -> (Player, Dealer) {
     let mut deck = Deck::new();
+    let mut player = Player::default();
+    let mut dealer = Dealer::default();
 
+    player.draw(&mut deck);
+    player.score = player.result_score();
 
-    println!("ドロー前のデッキ枚数: {}", deck.cards.len());
-    let mut palyer = Player::new(&mut deck);
-    println!("ドロー前のデッキ枚数: {}", deck.cards.len());
-    println!("{:#?}", palyer.hands);
-
-
-    println!("--------------------------- Player ---------------------------");
-    print!("手札: | ");
-    for card in palyer.hands.iter() {
-        print!("{:?}: ", card.suit);
-        match card.number {
-            Ace => {
-                print!("{} | ", 11u8);
-            }
-            Ten | Jack | Queen | King => print!("{} | ", 10u8),
-            _ => print!("{} | ", card.number as u8),
-        }
-    }
-
-    println!("あなたのスコアは{:?}", palyer.score);
-
-    // For display confirmation
-    todo!("hoge");
+    dealer.draw(&mut deck);
+    dealer.score = dealer.result_score();
+    (player, dealer) 
 }
